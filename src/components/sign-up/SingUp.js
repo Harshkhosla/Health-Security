@@ -17,8 +17,8 @@ const SingUp = () => {
     const {name,value}=e.target
     setSignUp({...signup,[name]:value})
   }
-  function signUpData(){
-  // e.preventDefault();
+  function signUpData(e){
+  e.preventDefault();
   dispatch(signItUp(navigate,signup))
   
   }

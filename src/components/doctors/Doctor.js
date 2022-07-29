@@ -7,19 +7,19 @@ import { DoctorData } from '../../harsh reducers/action-creators';
 const Doctor = () => {
   const dispatch =useDispatch()
   const notdata=useSelector(state=>state.amount.notesData)
-  console.log(notdata, "harshs");
+  // console.log(notdata, "harshs");
   
     const [discription,setDiscription]=useState({
         title:'',
         discription:''
     });
     const [noteData,setNoteData]=useState([])
-    console.log(noteData);
+    // console.log(noteData);
     const[iid,setIid]=useState('')
     const [modal,setModal]=useState();
-    console.log(modal);
+    // console.log(modal);
     const [data,setData]=useState([])
-    console.log(data);
+    // console.log(data);
 
     const onchange=(e)=>{
       const{name,value}=e.target;
@@ -79,11 +79,18 @@ const Doctor = () => {
       }))
     }
 
-
+//  console.log(noteData?.schema,"dvwegv");
   return (
   <>
   <div className="container">
     <div className="formDiv d-flex flex-column col-md-8 offset-md-2 mt-4">
+     <div className='text-center'>
+      <h4>
+        <b>
+      Report key: {noteData?.[0]?.schema}
+        </b>
+        </h4> 
+      </div>
       <form>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Topic</label>
@@ -97,12 +104,12 @@ const Doctor = () => {
           
       </form>
     </div>
-<div className="container">
+<div className="container d-flex flex-wrap align-items-center p-5 ">
     {noteData?.map((harsh,index)=>{
-      console.log(harsh);
+      // console.log(harsh);
       return(
-        <div className="col-md-3">
-        <div class="card ">
+        <div className="col-md-4 d-flex flex-column my-2">
+        <div class="card" style={{backgroundColor:"#F1FAFE", width:"350px", height:"200px"}}>
 
             <div class="card-body">
                 <h5 class="card-title">{harsh?.title}</h5>

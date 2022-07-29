@@ -1,5 +1,6 @@
 
-import { toast } from "react-toastify";
+import { toast,ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import {Navigate} from "react-router-dom";
 
 export const loginuser =(input)=>{
@@ -25,15 +26,15 @@ export const loginuser =(input)=>{
              throw Error(response.error)
    
            }
-           console.log(response);
-           // console.log(response);
+          //  console.log(response);
+          //  console.log(response);
            toast.success(response?.message)
            // setMessage(response);
           //  navigate("/sign-in")
    
          })
          .catch((error) => {
-           console.log(error);
+          //  console.log(error);
            toast.error(error?.message);
    
          });
@@ -47,9 +48,7 @@ const logindata=(amount)=>{
     }
 }
 export const signItUp=(navigate,field)=>{
-    console.log(field);
-    // let {navigate} = field
-    // debugger;
+  
     
     return  (dispatch)=>{
         const { email, password} = field;
@@ -69,27 +68,22 @@ export const signItUp=(navigate,field)=>{
           .then((response) => response.json())
           
           .then((response) => {
-            console.log(response.success)
-            toast.success(response?.success)
+            toast.success(response?.toast)
             
     
             if (!response?.success) {
               throw Error(response.error)
             }
-            console.log(response);
-            localStorage.setItem("Authorization", JSON.stringify(response.authtoken));
-            // localStorage.setItem("token", JSON.stringify(response.data[0].token));
-            // const token= 
+            // debugger;
+            localStorage.setItem("Authorization", JSON.stringify(response.authtoken));           
             dispatch(authtoken(JSON.stringify(response.authtoken).replaceAll('"','')))
-            navigate("/")
+            navigate("/home")
           
-            // (<Navigate to="/" />)
-            console.log(response);
             
           })
           .catch((err) => {
             // setError(err.message);
-            toast.error(err?.message);
+            // toast.error(err?.message);
             
     
           });
@@ -136,21 +130,17 @@ export const DoctorData=(feilds)=>{
      .then((response) => response.json())
      
      .then((response) => {
-       console.log(response.sucess)
-       toast.success(response?.sucess)
-       
+      //  console.log(response.sucess)
+       toast.success(response?.sucess)      
 
        if (!response?.sucess) {
          throw Error(response.error)
-       }
-      
-       console.log(response);
-       
+       }      
+      //  console.log(response);       
      })
      .catch((err) => {
        // setError(err.message);
-       toast.error(err?.message);
-       
+      //  toast.error(err);     
 
      })
   }
@@ -172,7 +162,7 @@ export const notesData=()=>{
                 // setSettingsData(response);/
             })
             .catch(error => {
-                console.log(error, "joih");
+                // console.log(error, "joih");
             });
   }
 }
@@ -206,7 +196,7 @@ export const SearchDatas=(feilds)=>{
    .then((response) => response.json())
    
    .then((response) => {
-     console.log(response)
+    //  console.log(response)
      dispatch(DataSearch(response))
 
      toast.success(response?.sucess)
@@ -216,12 +206,12 @@ export const SearchDatas=(feilds)=>{
        throw Error(response.error)
      }
     
-     console.log(response);
+    //  console.log(response);
      
    })
    .catch((err) => {
      // setError(err.message);
-     toast.error(err?.message);
+    //  toast.error(err?.message);
      
 
    })

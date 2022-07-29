@@ -59,22 +59,22 @@ const Documents = () => {
     )} */}
             <br />
 
-            <ul>
+            <div className="d-flex flex-wrap justify-content-between align-items-center p-5  ">
 
                 {/* <br />  */}
                 {dats?.map((harsh, index) => {
                     // console.log(harsh);
                     return (
-                        <li key={index}>
+                        <div key={index} className="d-flex flex-column m-3">
 
-                            <img alt="not fount" width={"300px"} src={URL.createObjectURL(harsh)} onClick={() => ShowImage(index)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                            <img alt="not fount" width={"300px"} height={"250px"} className="border border-dark" src={URL.createObjectURL(harsh)} onClick={() => ShowImage(index)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
 
-                            <button onClick={() => DeletNote(index)}>Remove</button>
-                        </li>
+                            <button className="btn btn-sm btn-danger my-2" onClick={() => DeletNote(index)}>Delete</button>
+                        </div>
                     )
                 }
                 )}
-            </ul>
+            </div>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">

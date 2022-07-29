@@ -1,5 +1,5 @@
 const initialState={
-    authtoken:'',
+    authtoken:[],
     notesData:[],
     searchData:[]
 }

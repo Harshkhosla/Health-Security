@@ -13,14 +13,16 @@ router.post ('/createuser',[
   body('email').isEmail(),
   body('password').isLength({ min: 2}),
 ],async(req,res)=>{
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+  let success =false;
+  const error = validationResult(req);
+  if (!error.isEmpty()) {
+    success=false;
+    return res.status(400).json({ error: error.array() });
   }
   try{
   let user =await UserSignin.findOne({email:req.body.email});
   if (user){
-      return res.status(400).json({error:"sorry user already exists "})
+      return res.status(400).json({error:"Sorry user already exists "})
   }
   const salt = await bcrypt.genSalt(10);
   const secPas= await bcrypt.hash(req.body.password,salt)
@@ -34,9 +36,11 @@ router.post ('/createuser',[
         id:user.id
       }
     }
+    success= true;
+    const message=`${req.body.name} account was created `;
     const authtoken =jwt.sign(data,JWT_SECRET);
-    console.log(authtoken) 
-    res.json({authtoken}) 
+    // console.log(authtoken) 
+    res.json({authtoken,message,success}) 
   }catch(error){
       console.error(error.message);
       res.status(500).send("backend ki error")
@@ -68,6 +72,7 @@ router.post ('/login',[
     const comparePassword=await bcrypt.compare(password,user.password);
     if(!comparePassword){
       success=false;
+      
       return res.status(400).json({success , error:"sorry apple  user dose not  exists "});
     }
     const payload={
@@ -78,7 +83,8 @@ router.post ('/login',[
     }
     const authtoken =jwt.sign(payload,JWT_SECRET);
     success= true;
-    res.json({success,authtoken}) 
+    const toast=`${email} just login in`;
+    res.json({success,toast,authtoken}) 
   }catch(error){
     console.error(error.message);
     res.status(500).send("internal  backend  ki error")
