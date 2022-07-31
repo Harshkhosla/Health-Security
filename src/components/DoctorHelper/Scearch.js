@@ -26,16 +26,17 @@ const Scearch = () => {
         <div className="container">
 
        <div class="form-outline form-white mb-4">
+        <h1>Enter your report key here </h1>
                 <input type="email" id="typeEmailX" class="form-control form-control-lg" value={signup.schema} name='schema' onChange={signUpChange} />
                 <button type="button" class="btn btn-secondary" onClick={searchdata}>Secondary</button>
               </div>
         </div>
-        <div className="container">
+        <div className="container d-flex flex-wrap align-items-center p-5">
     {Searchdata?.map((harsh,index)=>{
       console.log(harsh);
       return(
-        <div className="col-md-3">
-        <div class="card ">
+        <div className="col-md-4 d-flex flex-column my-2">
+        <div class="card " style={{backgroundColor:"#F1FAFE", width:"350px", height:"200px"}}>
 
             <div class="card-body">
                 <h5 class="card-title">{harsh?.title}</h5>

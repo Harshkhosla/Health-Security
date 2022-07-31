@@ -29,7 +29,7 @@ function Setting() {
         postalCode: ''
     })
     const [input, setInput] = useState();
-    console.log(input);
+    console.log(fields);
 
 
 const savedData =()=>{
@@ -65,39 +65,51 @@ const savedData =()=>{
             <div className="container settings" >
                 <div className="row" style={{ marginTop: "1rem" }}>
                     <div className="col-sm-12 mb-3">
-                        <h1 className="text-center mb-2"> Settings</h1>
-                        <p className='text-center mb-4 para '>Edit your organization's settings and public profile.</p>
+                        <h1 className="text-center mb-2"> Profile</h1>
+                        {/* <p className='text-center mb-4 para '>Edit your organization's settings and public profile.</p> */}
                         <h6 className='mb-2 pb-0'>
                             Contact Information
                         </h6>
                         <form className="row g-3" onSubmit={handleSubmit}>
                             <div className="col-md-6 ">
-                                <label htmlFor="validationCustom01" className='mb-0'>ORGANIZATION NAME</label>
-                                <input type="text" className="form-control py-3" id="validationCustom01" placeholder="WEB PLANET SOFT TECHNOLOGIES" onChange={onChange} value={input?.organisationName?.length===0?fields?.organisationName:input?.organisationName} name="organisationName" minLength={2} />
+                                <label htmlFor="validationCustom01" className='mb-0'>NAME</label>
+                                <input type="text" className="form-control py-3" id="validationCustom01" placeholder="Harsh" onChange={onChange} value="Harsh" />
                             </div>
                             <div className="col-md-6">
-                                <label htmlFor="text" className="form-label mb-0">PAN NUMBER</label>
-                                <input type="text" className="form-control py-3" id="inputNumber" placeholder='624930606283549' onChange={onChange} name="panNumber" value={fields.panNumber} />
+                                <label htmlFor="text" className="form-label mb-0">AADHAR NUMBER</label>
+                                <input type="number" className="form-control py-3" id="inputNumber" placeholder='624930606283549' onChange={onChange} name="panNumber" value={"624930606283549"} />
                             </div>
                             <div className="col-md-6  mt-1">
-                                <label htmlFor="inputEmail4" className="form-label mb-0">SUPPORT EMAIL</label>
-                                <input type="email" className="form-control py-3" id="inputEmail4" placeholder='ssingh883710@gmail.com' onChange={onChange} name="supEmai" value={input?.data?.[0]?.[0].email} />
+                                <label htmlFor="inputEmail4" className="form-label mb-0">EMAIL</label>
+                                <input type="email" className="form-control py-3" id="inputEmail4" placeholder='Harshkhosla9945@gmail.com' onChange={onChange} name="supEmail" value={'Harshkhosla9945@gmail.com'} />
                             </div>
                             <div className="col-md-6 mt-1">
                                 <label htmlFor="text" className="form-label mb-0 ">PHONE NUMBER</label>
-                                <input type="text" className="form-control py-3" id="inputNumber" placeholder='0141 302019' onChange={onChange} name="phoneNumber" value={fields.phoneNumber} />
+                                <input type="text" className="form-control py-3" id="inputNumber" placeholder='0141 302019' onChange={onChange} name="phoneNumber" value={'0141 302019'} />
                             </div>
                             <div className="col-md-6 mt-1">
-                                <label htmlFor="text" className="form-label mb-0 ">WEBSITE</label>
-                                <input type="text" className="form-control py-3" id="inputName" placeholder='https://webplanetsoft.com/' onChange={onChange} name="webSite" />
+                                <label htmlFor="text" className="form-label mb-0 ">GENDER</label>
+                                <input type="text" className="form-control py-3" id="inputName" placeholder='Gender' onChange={onChange}  value ={"Male"}name="webSite" />
                             </div>
+                            {/* <label htmlFor="text" className="form-label mb-0">COUNTRY</label>
+                                <input id="inputState" className="form-select py-3" name='phoneNumber'  onChange={onChange}>
+                                    {/* <option defaultValue={fields.country}>INDIA</option>
+                                    <option defaultValue={fields.country}>sd</option>
+                                    <option defaultValue={fields.country}>ds</option>
+                                    <option defaultValue={fields.country}>asd</option> */}
+                                    {/* <option>US</option>
+                                    <option>UK</option>
+                                    <option>CHINA</option>
+                                    <option>RUSSIA</option>
+                                    <option>JAPAN</option>
+                                </input> */} 
                             <div className="col-md-6 mt-1">
-                                <label htmlFor="text" className="form-label mb-0">LOGO URL</label>
-                                <input type="text" className="form-control py-3" id="inputNumber" placeholder='Paste link here' onChange={onChange} />
+                                <label htmlFor="text" className="form-label mb-0">DATE OF BIRTH</label>
+                                <input type="text" className="form-control py-3" id="inputNumber" placeholder='20/04/2002'  value={'20/04/2002'} onChange={onChange} />
                             </div>
                             <div className="col-12 mt-1">
-                                <label htmlFor="inputAddress" className="form-label mb-0">ORGANIZATION DESCRIPTION</label>
-                                <input type="text" className="form-control py-3" id="inputAddress" placeholder="WebplanetSoft is one of the Best Web Development & Design company in India." value={fields.organisationDesc} onChange={onChange} name="organisationDesc" />
+                                <label htmlFor="inputAddress" className="form-label mb-0">BLOOD GROUP</label>
+                                <input type="text" className="form-control py-3" id="inputAddress" placeholder="A+" value={"A+"} onChange={onChange} name="organisationDesc" />
 
                                 {/* <p><small>Appears on your profile below your name</small></p> */}
                                 <p><small>{formError.orgDesc}</small></p>
@@ -110,20 +122,20 @@ const savedData =()=>{
                             </h6>
                             <div className="col-md-6 ">
                                 <label htmlFor="inputAddress" className='mb-0'>ADDRESS LINE 1</label>
-                                <input type="text" className="form-control py-3" id="inputAddress" placeholder="560-561 Symphony Pride, Kings Rd" onChange={onChange} name="addressLine1" value={fields.addressLine1} />
+                                <input type="text" className="form-control py-3" id="inputAddress" placeholder="560-561 Symphony Pride, Kings Rd" onChange={onChange} name="addressLine1" value={"560-561 Symphony Pride, Kings Rd"} />
                             </div>
                             <div className="col-md-6">
                                 <label htmlFor="inputAddress" className='mb-0'>ADDRESS LINE 2</label>
-                                <input type="text" className="form-control py-3" id="inputNumber" placeholder='Nirman Nagar' onChange={onChange} name="addressLine2" value={input?.addressLine2?.length===0?fields?.addressLine2:input?.addressLine2}/>
+                                <input type="text" className="form-control py-3" id="inputNumber" placeholder='Nirman Nagar' onChange={onChange} name="addressLine2" value={'Nirman Nagar'}/>
                             </div>
                             <div className="col-md-6  mt-1">
                                 <label htmlFor="inputCity" className="form-label mb-0">City</label>
-                                <input type="text" className="form-control py-3" id="inputCity" placeholder={input?.city?.length===0?'Eg:-Jaipur':input?.city} onChange={onChange} name="city" value={input?.city?.length===0?fields?.city:input?.city} />
+                                <input type="text" className="form-control py-3" id="inputCity" placeholder={input?.city?.length===0?'Eg:-Jaipur':input?.city} onChange={onChange} name="city" value={"Jaipur"} />
 
                             </div>
                             <div className="col-md-6 mt-1">
                                 <label htmlFor="inputState" className="form-label mb-0 ">STATE</label>
-                                <input type="text" className="form-control py-3" id="inputState" placeholder={input?.state?.length===0?'Eg:-RAJASTHAN':input?.state} onChange={onChange} name="state" value={input?.state?.length===0?fields?.state:input?.state}/>
+                                <input type="text" className="form-control py-3" id="inputState" placeholder={input?.state?.length===0?'Eg:-RAJASTHAN':input?.state} onChange={onChange} name="state" value={"Rajasthan"}/>
                             </div>
                             <div className="col-md-6 mt-1">
                                 <label htmlFor="inputZipCode" className="form-label mb-0 ">ZIP CODE</label>
@@ -144,26 +156,26 @@ const savedData =()=>{
                                 </input>
                             </div>
                             <div className='mt-4'>
-                                <hr />
+                                {/* <hr /> */}
                             </div>
-                            <h6 className='mb-2 pb-0'>
+                            {/* <h6 className='mb-2 pb-0'>
                                 Business Detail
                             </h6>
                             <div className="col-md-6 mt-1">
                                 <label htmlFor="inputZipCode" className="form-label mb-0 ">TAX ID / VAT NUMBER</label>
                                 <input type="text" className="form-control py-3" id="inputZipCode" placeholder='eg. GB 123 4567 89' name='taxId' value={fields.taxId} onChange={onChange} />
-                            </div>
-                            <div className="col-md-6 mt-1">
+                            </div> */}
+                            {/* <div className="col-md-6 mt-1">
                                 <label htmlFor="text" className="form-label mb-0">BASE CURRENCY</label>
                                 <input id="inputState" className="form-select py-3" name='baseCurrency' value={input?.data?.[0]?.[0].currency} onChange={onChange}>
-                                    {/* <option defaultValue={fields.baseCurrency}>Indian Rupee</option> */}
-                                    {/* <option>US Dollar</option>
+                                    <option defaultValue={fields.baseCurrency}>Indian Rupee</option>
+                                    <option>US Dollar</option>
                                     <option>Pound sterling</option>
                                     <option>Chinese Yuan</option>
                                     <option>Russian Ruble</option>
-                                    <option>Japanese Yen</option> */}
+                                    <option>Japanese Yen</option>
                                 </input>
-                            </div>
+                            </div> */}
                             <div className='d-flex flex-row-reverse'>
                                 <button className="btn btn-primary mt-4 col-sm-2 " onClick={savedData} data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="submit">Save</button>
 
@@ -182,12 +194,21 @@ const savedData =()=>{
                                             </h6>
                                         </div>
                                         <div className="modal-body border d-flex flex-column text-start">
-                                            <div className="org-description">
-                                                <label htmlFor=""><small>ORGANIZATION DESCRIPTION</small></label>
-                                                <p>
-                                                    {fields.organisationDesc}
-                                                </p>
-                                            </div>
+                                        <label htmlFor=""><small>DETAILS</small></label>
+                                            <div className='d-flex flex-column'>
+                                                    <span>
+                                                    {fields.organisationName}
+                                                    </span>
+                                                    <span>
+                                                    {fields.panNumber}
+                                                    </span>
+                                                    <span>
+                                                    {fields.supEmail}
+                                                    </span>
+                                                    <span>
+                                                    {fields.phoneNumber}
+                                                    </span>
+                                                </div>
                                             <div className="org-description">
                                                 <label htmlFor=""><small>CONTACT INFORMATION</small></label>
                                                 <div className='d-flex flex-column'>
@@ -195,7 +216,7 @@ const savedData =()=>{
                                                         {input?.email}
                                                     </span>
                                                     <span>
-                                                        {/* {input.generated-invoices?.poNumber}     */}
+                                                        {fields.organisationDesc}
                                                     </span>
                                                     <span>
                                                         {fields.webSite}

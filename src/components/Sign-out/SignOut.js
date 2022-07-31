@@ -75,7 +75,7 @@ const SignOut = () => {
                     id="inputEmail3"
                     // placeholder={details?.data?.[0]?.[0]?.email}
                     // name="email"
-                    // value={details?.data?.[0]?.[0]?.email}
+                    value={"Harshkhosla9945@gmail.com"}
                     // // onChange={onChange}
 
 
@@ -93,7 +93,7 @@ const SignOut = () => {
                     id="inputName"
                     // placeholder={details?.data?.[0]?.[0]?.name}
                     // name="fullname"
-                    // value={account.fullnam}
+                    value={"Harsh"}
                     // onChange={onChange}
 
                   />

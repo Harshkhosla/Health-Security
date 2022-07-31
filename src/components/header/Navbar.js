@@ -4,21 +4,20 @@ import { RiAccountCircleFill } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
 import { Link ,useLocation} from 'react-router-dom'
 import "./Navbar.css"
+import image from './img.jpeg'
 
 const Navbar = () => {
-  // const token=useSelector(state=>state?.amount?.authtoken?.length)
   let location = useLocation();
   useEffect(() => {
-    // console.log(location.pathname);
   }, [location]);
   const isAuthenticate = localStorage.getItem(`Authorization`);
-  // debugger
+ 
   console.log(isAuthenticate,"kuhyjk");
-  // console.log(isAthenticated);
+  
   const logOut=(
-    <nav class="navbar navbar-expand-lg Navbar navbar-dark">
+    <nav class="navbar navbar-expand-lg Navbar navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><Fa500Px fontSize={"40px"}/></a>
+    <a class="navbar-brand" href="#"><img src={image} width="40px"></img></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -68,7 +67,7 @@ const Navbar = () => {
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <Link className={`btn m-2 ms-0 ${location.pathname === "/home" ? "active" : ""
-                  }`} aria-current="page" to="/home">Home</Link>
+                  }`} aria-current="page" to="/home">Prescription</Link>
           </li>
           <li class="nav-item">
             <Link className={`btn m-2 ms-0 ${location.pathname === "/profile" ? "active" : ""
@@ -80,11 +79,15 @@ const Navbar = () => {
           </li>   */}
           <li class="nav-item">
             <Link className={`btn m-2 ms-0 ${location.pathname === "/edits" ? "active" : ""
-                  }`}to="/edits">Prescription</Link>
+                  }`}to="/edits">Insights</Link>
+          </li> 
+          <li class="nav-item">
+            <Link className={`btn m-2 ms-0 ${location.pathname === "/report" ? "active" : ""
+                  }`}to="/report">Report</Link>
           </li> 
           <li class="nav-item">
             <Link className={`btn m-2 ms-0 ${location.pathname === "/settings" ? "active" : ""
-                  }`}to="/settings">Settings</Link>
+                  }`}to="/settings">Profile</Link>
           </li>      
             
           {/* <li class="nav-item">
@@ -95,7 +98,7 @@ const Navbar = () => {
         <ul class="navbar-nav me-0 mb-2 mb-lg-0">
       <li class="nav-item">
           <Link className={`btn m-2 ms-0 ${location.pathname === "/SignOut" ? "active" : ""
-                  }`} to="/SignOut"><RiAccountCircleFill fontSize={"40px"}/> Profile</Link>
+                  }`} to="/SignOut"><RiAccountCircleFill fontSize={"40px"}/> Settings</Link>
         </li> 
         </ul>
         

@@ -10,10 +10,10 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'; // insta
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 // Worker
 import { Worker } from '@react-pdf-viewer/core'; // install this library
-import "./Profile.css"
+import "./Report.css"
 const today = new Date()
 
-const Profile = () => {
+const Report = () => {
 	const defaultLayoutPluginInstance = defaultLayoutPlugin();
   
 	// for onchange event
@@ -73,8 +73,8 @@ const Profile = () => {
     <br></br>
     
       <form className='form-group' onSubmit={handlePdfFileSubmit}>
-	  <label htmlFor=""><small>DOCUMENT NAME</small></label>
-	  <input className='form-control my-3'
+      <label htmlFor=""><small>DOCUMENT NAME</small></label>
+      <input className='form-control my-3'
           required value={name} onChange={harshdata}/>
         <input type="file" className='form-control'
           required onChange={handlePdfFileChange}
@@ -106,4 +106,6 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default Report
+
+

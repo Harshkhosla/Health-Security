@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Notes from './Notes';
 import { notesData } from '../../harsh reducers/action-creators';
 import { DoctorData } from '../../harsh reducers/action-creators';
+const today = new Date();
 
 const Doctor = () => {
   const dispatch =useDispatch()
@@ -97,7 +98,7 @@ const Doctor = () => {
             <input type="text" class="form-control" id="exampleInputEmail1" name='title' value={discription.title} onChange={onchange}/>
           </div>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+            <label for="exampleFormControlTextarea1" class="form-label">Detail</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" name='discription'value={discription.discription}  onChange={onchange} rows="3"></textarea>
           </div>
           <button type="button" class="btn col-md-4 offset-md-4 rounded-2 text-white" style={{backgroundColor:"#10847E"}} onClick={clicked}>Submit</button>
@@ -115,7 +116,10 @@ const Doctor = () => {
                 <h5 class="card-title">{harsh?.title}</h5>
                 <p class="card-text">{harsh?.discription}</p>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"onClick={()=>edit(index)}>Edit</button>
-                <button class="btn btn-primary" onClick={()=>delet(index)}>delet</button>
+                <button class="btn btn-primary" onClick={()=>delet(index)}>delete</button>
+                <div className='d-flex justify-content-end'>
+                  {`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}
+                  </div>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

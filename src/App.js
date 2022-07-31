@@ -14,10 +14,12 @@ import Documents from './components/Documents.js/Documents';
 
 import Navbar from './components/header/Navbar';
 import Doctor from './components/doctors/Doctor';
+import Pdf from './components/pdf/Pdf';
 import SignOut from './components/Sign-out/SignOut';
 import Scearch from './components/DoctorHelper/Scearch';
 import HomeLog from './components/logout home/HomeLog';
 import { ToastContainer } from 'react-toastify';
+import Report from './components/Report/Report';
 // import { ToastContainer } from 'react-toastify/dist/components';
 
 function App() {
@@ -51,6 +53,9 @@ pauseOnHover
         <Route path='/documnets' element={<Scearch/>}/>
         <Route path='/edits' element={<Doctor/>}/>
         <Route path='/signOut' element={<SignOut/>}/>
+        <Route path='/report' element={<Report/>}/>
+        {/* <Route path='/pdfgenrator' element={<Pdf/>}/> */}
+        
 
      
     </Routes>
