@@ -3,13 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import Notes from './Notes';
 import { notesData } from '../../harsh reducers/action-creators';
 import { DoctorData } from '../../harsh reducers/action-creators';
+import {editData} from '../../harsh reducers/action-creators'
+import { deletData } from '../../harsh reducers/action-creators'
+import dateFormat from 'dateformat';
 const today = new Date();
 
 const Doctor = () => {
   const dispatch =useDispatch()
   const notdata=useSelector(state=>state.amount.notesData)
+  const deletedData=useSelector(state=>state.amount.deletedData.Sucess)
+  console.log(notdata);
   // console.log(notdata, "harshs");
-  
+  // dateFormat()
     const [discription,setDiscription]=useState({
         title:'',
         discription:''
@@ -21,56 +26,51 @@ const Doctor = () => {
     // console.log(modal);
     const [data,setData]=useState([])
     // console.log(data);
-
     const onchange=(e)=>{
       const{name,value}=e.target;
         setDiscription({...discription,[name]: value})
     }
-
-
     const clicked=()=>{
       setData([...data,discription])
       dispatch(DoctorData(discription))
-    }
-
+    }    
     useEffect(()=>{
       setNoteData(notdata)
     },[notdata])
 
+
     const delet=(id)=>{
-      // debugger;
-      setNoteData(noteData.filter((data,index)=>{
-        return(index!=id)
-      }))
-    }
-
-
+      const newDataa=noteData?.filter((data,index)=>index===id)   
+      dispatch(deletData(newDataa?.[0]))
+      dispatch(notesData())
+      if(deletedData===true){
+        // debugger;
+      //  let singledata= noteData.filter((data, index) => index!==id)
+      //  setNoteData(singledata)
+      //   console.log(noteData);
+      }      
+    }    
     const onchangee=(e)=>{ 
-      debugger;
+      // debugger;
       const{name,value}=e.target;
 
       setModal({...modal,[name]: value})
     }
-
     useEffect(()=>{
       const  dataCall=async ()=>{
       dispatch(notesData())
       }
       dataCall();
      },[data])
-
-
     const edit=(id)=>{
       setIid(id)
-      const newData=data?.filter((data,index)=>index===id)
-      setModal(newData[0]);
+      const newData=noteData?.filter((data,index)=>index===id)
+      // console.log(newData);
+      setModal(newData?.[0]);
           }
-
-
-
-
     const saveData=()=>{
-      setData(data.map((data,index)=>{
+      dispatch(editData(modal))
+      setData(notdata.map((data,index)=>{
         if (index===iid){
           return modal;
         }
@@ -108,6 +108,7 @@ const Doctor = () => {
 <div className="container d-flex flex-wrap align-items-center p-5 ">
     {noteData?.map((harsh,index)=>{
       // console.log(harsh);
+      // const date=harsh?.Date("2019-04-30T08:59:00.000Z", "mmmm dS, yyyy")
       return(
         <div className="col-md-4 d-flex flex-column my-2">
         <div class="card" style={{backgroundColor:"#F1FAFE", width:"350px", height:"200px"}}>
@@ -115,6 +116,8 @@ const Doctor = () => {
             <div class="card-body">
                 <h5 class="card-title">{harsh?.title}</h5>
                 <p class="card-text">{harsh?.discription}</p>
+                {/* <p class="card-text">{harsh?._id}</p> */}
+                <p class="card-text">{harsh?.Date}</p>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"onClick={()=>edit(index)}>Edit</button>
                 <button class="btn btn-primary" onClick={()=>delet(index)}>delete</button>
                 <div className='d-flex justify-content-end'>

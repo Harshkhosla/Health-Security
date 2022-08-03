@@ -3,9 +3,12 @@ import React, { useState } from "react";
 // import "../../"
 import image from './img.gif.gif'
 import image2 from '../logout home/img3.gif'
+import { SaveImage } from '../../harsh reducers/action-creators'
+import { useDispatch } from "react-redux";
 const Documents = () => {
+    const dispatch= useDispatch();
     const today = new Date()
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState();
     const [dats, setDats] = useState([]);
     const[img,setImg]=useState([]);
     const [date,setDate]=useState();
@@ -42,10 +45,24 @@ const Documents = () => {
                 name="myImageee" 
                 
                 onChange={(event) => {
-                    console.log(event.target.files[0]);
-                    setSelectedImage(event.target.files[0]);
-                    setDats([...dats, event.target.files[0]]);
-                    setDate(`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}`)
+                   let selectedFile=event.target.files[0];
+                //    console.log(selectedFile);
+                    const formDataGenrator= (data) =>{
+                        console.log(data);
+                       let formDataValue= new FormData();
+                       
+                       let key=Object.keys(data)
+                       console.log(key);
+                       key.map((keys)=>{
+                         formDataValue.append(key,data[keys])
+                       })
+                       console.log(formDataValue);
+                       return formDataValue
+                       
+                    }
+                    dispatch(SaveImage(formDataGenrator({
+                        image:selectedFile
+                    })))
                 }}
                 
                 />
@@ -53,13 +70,7 @@ const Documents = () => {
                 </div>
             </div>
         </div>
-            {/* {selectedImage && (
-      <div>
-      <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
-      <br />
-      
-      </div>
-    )} */}
+        
             <br />
 
             <div className="d-flex flex-wrap justify-content-between align-items-center p-5  ">

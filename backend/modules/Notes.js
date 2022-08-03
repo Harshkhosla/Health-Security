@@ -5,7 +5,8 @@ const NotesSchema =new Schema({
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'user'
-    }, 
+    },
+    
     schema:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'user'
@@ -20,6 +21,10 @@ const NotesSchema =new Schema({
     },
     tag:{
         type: String,
+    },
+    Date:{
+        type:Date,
+        default: Date.now
     }
 
 })

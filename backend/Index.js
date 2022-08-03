@@ -15,7 +15,7 @@ app.use(
 
 app.use('/api/auth',require('./routes/auth'))
 app.use('/api/notes',require('./routes/notes'))
-app.use('/api/health',require('./routes/healthId'))
+app.use('/api/Image',require('./routes/Imagedata'))
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

@@ -67,8 +67,10 @@ export const signItUp=(navigate,field)=>{
         })
           .then((response) => response.json())
           
+          
           .then((response) => {
             toast.success(response?.toast)
+            console.log(response,"casdvas")
             
     
             if (!response?.success) {
@@ -82,6 +84,7 @@ export const signItUp=(navigate,field)=>{
             
           })
           .catch((err) => {
+            console.log(err,"cvdsavs");
             // setError(err.message);
             // toast.error(err?.message);
             
@@ -147,6 +150,7 @@ export const DoctorData=(feilds)=>{
 }
 
 export const notesData=()=>{
+  // debugger
   return(dispatch)=>{
     fetch("http://localhost:5000/api/notes/fetchallnotes", {
 
@@ -185,8 +189,8 @@ export const SearchDatas=(feilds)=>{
  
    method: "POST",
    headers: {
-     "content-type": "application/json",
-    //  "Authorization": localStorage.getItem(`Authorization`).replaceAll('"', ""),
+     "content-type": "application/json"
+     
    },
 
    body: JSON.stringify({
@@ -224,3 +228,92 @@ const DataSearch=(amount)=>{
     payload:amount
   }
 }
+
+export const editData=(feilds)=>{
+  // debugger
+  return(dispatch)=>{
+    const {title,discription,_id}=feilds;
+    // debugger;
+    fetch(`http://localhost:5000/api/notes/updatenote/${(_id).replaceAll('"', "")}`, {
+   method: "PUT",
+   headers: {
+     "content-type": "application/json",
+     "Authorization": localStorage.getItem(`Authorization`).replaceAll('"', ""),
+   },
+
+   body: JSON.stringify({
+    title,discription
+   }),
+ })
+   .then((response) => response.json())
+   
+   .then((response) => {
+    //  dispatch(DataSearch(response))
+    //  toast.success(response?.sucess)
+    //  if (!response?.sucess) {
+    //    throw Error(response.error)
+
+    console.log(response);
+    //  }
+   })
+   .catch((err) => {
+   })
+  }
+}
+export const deletData =(feilds)=>{
+  // debugger  
+  return(dispatch)=>{
+    const{_id}=feilds
+    fetch(`http://localhost:5000/api/notes/deletenote/${_id}`, {
+   method: "DELETE",
+   headers: {
+     "content-type": "application/json",
+     "Authorization": localStorage.getItem(`Authorization`).replaceAll('"', ""),
+   },
+ })
+   .then((response) => response.json())
+   
+   .then((response) => {
+    console.log(response);
+    dispatch(deleteddata(response))
+   })
+   .catch((err) => {
+   })
+  }
+}
+const deleteddata =(amount)=>{
+  return{
+    type:"deleteddata",
+    payload:amount
+  }
+}
+
+export const SaveImage=(feilds)=>{
+  debugger;
+  return(dispatch)=>{
+    const{name}=feilds
+
+    console.log(name);
+    fetch(`http://localhost:5000/api/Image/saveimage`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"        
+      },   
+      body: JSON.stringify({
+       name
+      }),
+    })
+      .then((response) => response.json())      
+      .then((response) => {  
+        console.log(response); 
+        toast.success(response?.sucess)           
+        if (!response?.sucess) {
+          throw Error(response.error)
+        }
+      })
+      .catch((err) => {       
+   
+      })
+  }
+}
+
