@@ -291,17 +291,16 @@ const deleteddata =(amount)=>{
 export const SaveImage=(feilds)=>{
   debugger;
   return(dispatch)=>{
-    const{name}=feilds
+    const{image}=feilds
 
-    console.log(name);
+    console.log(image);
     fetch(`http://localhost:5000/api/Image/saveimage`, {
-      method: "POST",
+      method: "POST",   
       headers: {
-        "content-type": "application/json"        
-      },   
-      body: JSON.stringify({
-       name
-      }),
+        
+        "Authorization": localStorage.getItem(`Authorization`).replaceAll('"', ""),
+      },
+      body: feilds
     })
       .then((response) => response.json())      
       .then((response) => {  
@@ -314,6 +313,65 @@ export const SaveImage=(feilds)=>{
       .catch((err) => {       
    
       })
+  }
+}
+
+export const imagesData=()=>{
+  return(dispatch)=>{
+    fetch("http://localhost:5000/api/Image/getallimages", {
+
+      method: "GET",
+      headers: {
+          "content-type": "application/json",
+          'Authorization': localStorage.getItem(`Authorization`).replaceAll('"', '')
+      },
+  })
+      .then(response => response.json())
+      .then(response => {
+        dispatch(datasImage(response))
+          // setSettingsData(response);/
+      })
+      .catch(error => {
+          // console.log(error, "joih");
+      });
+  }
+} 
+
+const datasImage =(amount)=>{
+  // debugger;
+  return{
+    type:'imagesdata',
+    payload:amount
+  }
+}
+export const deletImages=(feilds)=>{
+  return(dispatch)=>{
+    
+    const{_id}=feilds
+    debugger;
+    fetch(`http://localhost:5000/api/Image/deleteImage/${_id}`, {
+   method: "DELETE",
+   headers: {
+     "content-type": "application/json",
+     "Authorization": localStorage.getItem(`Authorization`).replaceAll('"', ""),
+   },
+ })
+   .then((response) => response.json())
+   
+   .then((response) => {
+    console.log(response);
+    dispatch(imagesDeleted(response))
+   })
+   .catch((err) => {
+   })
+  }
+
+}
+const imagesDeleted=(amount)=>{
+  // debugger
+  return{
+    type:'deletingImage',
+    payload:amount
   }
 }
 
