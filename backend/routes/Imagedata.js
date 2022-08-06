@@ -26,8 +26,7 @@ router.post('/saveimage',fetchUser,async(req,res)=>{
                 const newImage =new ImageSchema({
                     name: req.body.name,
                     user:req.user.id,
-                    schema:req.user.id,                
-                    image:req.file.filename,
+                    schema:req.user.id,  
                     image:req.file.path
                 }) 
                 newImage.save()

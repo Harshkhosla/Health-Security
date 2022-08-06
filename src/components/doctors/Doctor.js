@@ -43,7 +43,7 @@ const Doctor = () => {
       const newDataa=noteData?.filter((data,index)=>index===id)   
       dispatch(deletData(newDataa?.[0]))
       dispatch(notesData())
-      if(deletedData===true){
+      if( deletedData===true){
         // debugger;
       //  let singledata= noteData.filter((data, index) => index!==id)
       //  setNoteData(singledata)

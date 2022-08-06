@@ -346,9 +346,8 @@ const datasImage =(amount)=>{
 }
 export const deletImages=(feilds)=>{
   return(dispatch)=>{
-    
-    const{_id}=feilds
     debugger;
+    const{_id}=feilds
     fetch(`http://localhost:5000/api/Image/deleteImage/${_id}`, {
    method: "DELETE",
    headers: {

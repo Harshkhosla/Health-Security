@@ -1,44 +1,32 @@
 
 import React, { useEffect, useState } from "react";
 // import "../../"
-import image from './img.gif.gif'
+// import image from './img.gif.gif'
 import image2 from '../logout home/img3.gif'
 import { imagesData } from '../../harsh reducers/action-creators'
 import { SaveImage } from '../../harsh reducers/action-creators'
 import { deletImages } from '../../harsh reducers/action-creators'
 import { useDispatch, useSelector } from "react-redux";
 const Documents = () => {
-    const dispatch= useDispatch();
-    // const imagesDeletedDataData=useSelector(state=>state.amount.imagesData)
-    
-    const imagesAllData=useSelector(state=>state.amount.imagesData)
-    
-    const[mapImages,setMapImages]=useState([]);
-    // console.log(mapImages);
-    // const today = new Date()
-    const [selectedImage, setSelectedImage] = useState();
-    console.log(selectedImage);
+    const dispatch= useDispatch();    
+    const imagesAllData=useSelector(state=>state.amount.imagesData)    
+    const[mapImages,setMapImages]=useState([]); 
     const [dats, setDats] = useState([]);
-    const[img,setImg]=useState([]);
-    const [date,setDate]=useState();
+    const[img,setImg]=useState('');
     const [dataSend ,setDataSend]=useState()
-    const[add ,setAdd]=useState([])
-    const DeletNote = (id) => {
+    const[updated,setUpdated]=useState([])
 
-        setDats(imagesAllData.filter((data, index) => {
-            return (
-                index === id
-            )
-        }
-        ))
-        dispatch(deletImages(dats?.[0]))
-        console.log(dats?.[0]);
-    }
+
+
+
+
+    
     const ShowImage = (id) => {
         console.log(id);
-        dats.find((data,index)=>{
+        imagesAllData.find((data,index)=>{
             if(id===index){
-                setImg(data)
+                debugger;
+                setImg(data?.image)
             }
         })
     }
@@ -48,16 +36,21 @@ const Documents = () => {
 
 
     const dataSending=()=>{
-        dispatch(SaveImage(
-            dataSend                         
-    
-            ))
-            
-        setSelectedImage()
-       
-            
-    }
+        
+        
+        dispatch(SaveImage(dataSend)) 
+        setUpdated([...updated,dats])
 
+    }
+    const DeletNote = (id) => {
+        console.log("dwvw");
+         const imagesDataDeleting=imagesAllData?.filter((data, index) =>index === id)
+         
+         debugger;
+         dispatch(deletImages(imagesDataDeleting?.[0]))
+         // debugger;
+         // dispatch(imagesData())
+     }
 
 
     useEffect(()=>{
@@ -67,7 +60,7 @@ const Documents = () => {
         }
        
         imagesDatacall()
-    },[selectedImage])
+    },[updated])
 
 
 
@@ -103,6 +96,7 @@ const Documents = () => {
 
                   let selectedImage=event.target.files[0];
                     // ----converting to binary ----//
+
                 //   const formDataGenerator = (data) => {
                 //     let formDataValue = new FormData(); 
                     // let keys = Object.keys(data);
@@ -114,10 +108,11 @@ const Documents = () => {
 
 
                 // ------ converting to string -------//
-
+                setDats('casdvdc')
                 let formDataValue = new FormData();
                 formDataValue.append('image',selectedImage)
                 setDataSend(formDataValue)
+                
 
                   
                    
@@ -139,12 +134,12 @@ const Documents = () => {
                     // console.log(harsh.image);
                     // debugger
                     return (
-                        <div key={index} className="d-flex flex-column m-3">
+                        <div  className="d-flex flex-column m-3">
 
                             <img alt="not fount" width={"300px"} height={"250px"} className="border border-dark" src={harsh.image} onClick={() => ShowImage(index)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
                             {/* <span>{selectedImage?.lastModifiedDate}</span> */}
-                            {date}
-                            <button className="btn btn-sm btn-danger my-2" onClick={() => DeletNote(index)}>Delete</button>
+                            
+                            <button className="btn btn-sm btn-danger my-2"  type ="button" onClick={() => DeletNote(index)}>Delete</button>
                         </div>
                     )
                 }
@@ -159,7 +154,7 @@ const Documents = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                           {img?.length===0?"no image to show":<img alt="not fount" width={"900px"} src={URL.createObjectURL(img)} />}
+                           {img?.length===0?"no image to show":<img alt="not fount" width={"900px"} src={img} />}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
