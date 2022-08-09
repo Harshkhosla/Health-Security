@@ -11,7 +11,7 @@ const today = new Date();
 const Doctor = () => {
   const dispatch =useDispatch()
   const notdata=useSelector(state=>state.amount.notesData)
-  const deletedData=useSelector(state=>state.amount.deletedData.Sucess)
+  const deletedData=useSelector(state=>state.amount.deletedData?.Sucess)
   console.log(notdata);
   // console.log(notdata, "harshs");
   // dateFormat()

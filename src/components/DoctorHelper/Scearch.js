@@ -2,13 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { SearchDatas } from '../../harsh reducers/action-creators'
 import { useNavigate } from "react-router-dom";
+import { AiOutlineFilePdf } from 'react-icons/ai';
+
+import { Link ,useLocation} from 'react-router-dom'
+import { PdfDataGet } from '../../harsh reducers/action-creators'// Import the styles
+// import '@react-pdf-viewer/core/lib/styles/index.css';
+// import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'; // install this library
+// import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+// // Worker
+// import { Worker } from '@react-pdf-viewer/core'; // install this library
+// import "./Profile.css"
 
 const Scearch = () => {
   const dispatch = useDispatch();
-  const Searchdatanotes = useSelector(state => state.amount.searchData?.[0])
-  const SearchdataImages = useSelector(state => state.amount.searchData?.[1])
+  const Searchdatanotes = useSelector(state => state?.amount?.searchData?.[0])
+  const SearchdataImages = useSelector(state => state?.amount?.searchData?.[1])
+  
+  const Searchdatapdf = useSelector(state => state?.amount?.pdfData)
   // const imagesAllData=useSelector(state=>state.amount.imagesData) 
-  console.log(SearchdataImages);
+  console.log(Searchdatapdf);
   console.log(Searchdatanotes);
   const [signup, setSignUp] = useState({
     schema: ''
@@ -23,6 +35,7 @@ const Scearch = () => {
   const searchdata = () => {
     // debugger;
     dispatch(SearchDatas(signup))
+    dispatch(PdfDataGet(signup))
   }
   return (
     <div>
@@ -61,6 +74,26 @@ const Scearch = () => {
           <img alt="not fount" width={"300px"} height={"250px"} className="border border-dark" src={data.image} data-bs-toggle="modal" data-bs-target="#exampleModal" />
          
 
+          {/* <button className="btn btn-sm btn-danger my-2"  type ="button" onClick={() => DeletNote(index)}>Delete</button> */}
+        </div>)
+      })}
+
+
+{Searchdatapdf?.map((data, index) => {
+        console.log(data);
+        return(
+        <div className="d-flex flex-column m-3">
+
+          {/* <img alt="not fount" width={"300px"} height={"250px"} className="border border-dark" fileUrl={data.pdf} data-bs-toggle="modal" data-bs-target="#exampleModal" /> */}
+{/*          
+          {viewPdf&&<><Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+          <Viewer fileUrl={data}
+            plugins={[defaultLayoutPluginInstance]} />
+      </Worker></>} */}
+      
+    <Link to='/pdfgenrator'>
+     < AiOutlineFilePdf size={250}  />
+    </Link>
           {/* <button className="btn btn-sm btn-danger my-2"  type ="button" onClick={() => DeletNote(index)}>Delete</button> */}
         </div>)
       })}

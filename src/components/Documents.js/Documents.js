@@ -40,6 +40,8 @@ const Documents = () => {
         
         dispatch(SaveImage(dataSend)) 
         setUpdated([...updated,dats])
+        
+        
 
     }
     const DeletNote = (id) => {

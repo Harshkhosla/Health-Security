@@ -289,7 +289,7 @@ const deleteddata =(amount)=>{
 }
 
 export const SaveImage=(feilds)=>{
-  debugger;
+  // debugger;
   return(dispatch)=>{
     const{image}=feilds
 
@@ -374,3 +374,55 @@ const imagesDeleted=(amount)=>{
   }
 }
 
+export const pdfData=(feilds)=>{
+  // debugger;
+  return(dispatch)=>{
+    const{image}=feilds
+
+    console.log(image);
+    fetch(`http://localhost:5000/api/pdf/savePdf`, {
+      method: "POST",   
+      headers: {
+        
+        "Authorization": localStorage.getItem(`Authorization`).replaceAll('"', ""),
+      },
+      body: feilds
+    })
+      .then((response) => response.json())      
+      .then((response) => {  
+        console.log(response); 
+        toast.success(response?.sucess)           
+        if (!response?.sucess) {
+          throw Error(response.error)
+        }
+      })
+      .catch((err) => {       
+   
+      })
+  }
+}
+export const PdfDataGet=(feilds)=>{
+  const {schema}=feilds;
+  // debugger
+  return(dispatch)=>{
+    fetch(`http://localhost:5000/api/pdf/getallPdf/${schema}`, {
+
+      method: "GET",
+   
+  })
+      .then(response => response.json())
+      .then(response => {
+        console.log();
+        dispatch(sendPdf(response))
+      })
+      .catch(error => {
+      });
+  }
+} 
+const sendPdf=(amount)=>{
+  // debugger;
+  return{
+    type:'SavingImages',
+    payload:amount
+  }
+}
